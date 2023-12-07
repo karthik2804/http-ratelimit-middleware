@@ -1,0 +1,22 @@
+spin_manifest_version = 2
+
+[application]
+name = "example"
+version = "0.1.0"
+description = "A simple HTTP handler"
+
+[[trigger.http]]
+route = "/..."
+component = "example"
+
+[component.example]
+source = "service.wasm"
+allowed_outbound_hosts = []
+key_value_stores = ["default"]
+[component.example.variables]
+rate_limit_period = "5"
+rate_limit_count = "10"
+header_key = "spin-client-addr"
+api_host = "https://my-api.com"
+[component.example.build]
+command = "./build.sh"
